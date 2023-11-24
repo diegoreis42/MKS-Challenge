@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { UserErrorsEnum } from 'src/domains/user/enums';
-import { IUserRepository, IUserServices } from 'src/domains/user/interfaces';
+import { UserErrorsEnum } from 'src/domain/user/enums';
+import { IUserRepository, IUserServices } from 'src/domain/user/interfaces';
 
 @Injectable()
 export class UserServices implements IUserServices {

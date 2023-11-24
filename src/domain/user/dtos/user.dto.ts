@@ -5,7 +5,7 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
-import { UserEnum } from 'src/domains/user/enums';
+import { UserEnum } from 'src/domain/user/enums';
 
 export class UserDto {
   @IsEmail()
