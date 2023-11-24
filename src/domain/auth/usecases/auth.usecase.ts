@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { IUserRepository, IUserServices } from 'src/domain/user/interfaces';
 import * as bcrypt from 'bcrypt';
-import { AuthEnum } from 'src/domain/auth/enums';
+import { AuthEnum, AuthErrorsEnum } from 'src/domain/auth/enums';
 import { UserCredentialsDto, UserRegisterDto } from 'src/domain/user/dtos';
 import { IAuthService, IAuthUseCases } from 'src/domain/auth/interfaces';
 
@@ -14,7 +14,7 @@ export class AuthUseCases implements IAuthUseCases {
   ) {}
 
   async register(user: UserRegisterDto) {
-    await this.userServices.verifyEmailExists(user.);
+    await this.userServices.verifyEmailExists(user.email);
 
     const { password, ...newUser } = await this.userRepository.createOne({
       ...user,
@@ -22,5 +22,19 @@ export class AuthUseCases implements IAuthUseCases {
     });
 
     return this.authService.createAccessToken(newUser);
+  }
+
+  async login(user: UserCredentialsDto) {
+    const { password, ...authUser } = await this.userServices.findByEmail(
+      user.email,
+    );
+
+    if (await bcrypt.compare(user.password, password))
+      return this.authService.createAccessToken(authUser);
+
+    throw new HttpException(
+      AuthErrorsEnum.WRONG_PASSWORD,
+      HttpStatus.BAD_REQUEST,
+    );
   }
 }

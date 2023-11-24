@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  HttpCode,
   Injectable,
   Post,
   UsePipes,
@@ -18,5 +19,11 @@ export class AuthController {
   @Post('register')
   registerUser(@Body() userDto: UserRegisterDto) {
     return this.authUseCases.register(userDto);
+  }
+
+  @Post('login')
+  @HttpCode(200)
+  login(@Body() body: UserCredentialsDto) {
+    return this.authUseCases.login(body);
   }
 }
