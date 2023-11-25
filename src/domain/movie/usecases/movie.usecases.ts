@@ -1,4 +1,6 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { CACHE_MANAGER } from '@nestjs/cache-manager';
+import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
+import { Cache } from 'cache-manager';
 import { MovieCreateDto, MovieUpdateDto } from 'src/domain/movie/dtos';
 import { MovieErrorsEnum } from 'src/domain/movie/enums';
 import {
@@ -14,6 +16,7 @@ export class MovieUseCases implements IMovieUseCases {
   constructor(
     private movieRepository: IMovieRepository,
     private movieServices: IMovieServices,
+    @Inject(CACHE_MANAGER) private cacheService: Cache,
   ) {}
 
   async createMovie(movie: MovieCreateDto): Promise<IMovie> {
@@ -26,12 +29,13 @@ export class MovieUseCases implements IMovieUseCases {
     return this.movieRepository.createOne(movie);
   }
 
-  // resolve isso
   async updateMovie(
     movieDto: MovieUpdateDto,
     movieId: string,
   ): Promise<IMovie> {
     await this.movieServices.findMovie(movieId);
+
+    await this.cacheService.set(movieId, movieDto);
 
     return this.movieRepository.updateOne(movieDto, movieId);
   }

@@ -14,6 +14,7 @@ import { AuthGuard } from 'src/domain/auth/guards';
 import { MovieCreateDto, MovieId } from 'src/domain/movie/dtos';
 import { Movie } from 'src/domain/movie/entities';
 import {
+    IMovie,
   IMovieRepository,
   IMovieServices,
   IMovieUseCases,
@@ -31,7 +32,7 @@ export class MovieController {
 
   @Post()
   @UseGuards(AuthGuard)
-  create(@Body() movieDto: MovieCreateDto) {
+  create(@Body() movieDto: MovieCreateDto): Promise<IMovie> {
     return this.movieUseCases.createMovie(movieDto);
   }
 
