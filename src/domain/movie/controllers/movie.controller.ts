@@ -11,7 +11,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { AuthGuard } from 'src/domain/auth/guards';
-import { MovieCreateDto } from 'src/domain/movie/dtos';
+import { MovieCreateDto, MovieId } from 'src/domain/movie/dtos';
 import { IMovieRepository, IMovieUseCases } from 'src/domain/movie/interfaces';
 
 @UsePipes(new ValidationPipe())
@@ -35,8 +35,9 @@ export class MovieController {
   }
 
   @Get('/:id')
-  getOne(@Param() movieId) {
-    // retorna um filme por id
+  @UseGuards(AuthGuard)
+  getOne(@Param() movieId: MovieId) {
+    return this.movieRepository.findOne(movieId.id);
   }
 
   @Patch('/:id')
