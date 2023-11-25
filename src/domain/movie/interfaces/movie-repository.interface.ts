@@ -8,4 +8,5 @@ export abstract class IMovieRepository {
   abstract updateOne(movie: Partial<IMovie>): Promise<Movie>;
   abstract deleteOne(movieId: string): Promise<DeleteResult>;
   abstract findOneByName(movieName: string): Promise<Movie>;
+  abstract findAll(): Promise<Movie[]>;
 }

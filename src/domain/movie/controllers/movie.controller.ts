@@ -12,12 +12,15 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from 'src/domain/auth/guards';
 import { MovieCreateDto } from 'src/domain/movie/dtos';
-import { IMovieUseCases } from 'src/domain/movie/interfaces';
+import { IMovieRepository, IMovieUseCases } from 'src/domain/movie/interfaces';
 
 @UsePipes(new ValidationPipe())
 @Controller('movie')
 export class MovieController {
-  constructor(private movieUseCases: IMovieUseCases) {}
+  constructor(
+    private movieUseCases: IMovieUseCases,
+    private movieRepository: IMovieRepository
+    ) {}
 
   @Post()
   @UseGuards(AuthGuard)
@@ -26,8 +29,9 @@ export class MovieController {
   }
 
   @Get()
+  @UseGuards(AuthGuard)
   getAll() {
-    // retorna todos os filmes
+    return this.movieRepository.findAll();
   }
 
   @Get('/:id')

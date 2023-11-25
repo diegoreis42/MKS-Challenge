@@ -31,6 +31,10 @@ export class MovieRepository implements IMovieRepository {
     });
   }
 
+  findAll(): Promise<Movie[]> {
+    return this.repository.find();
+  }
+
   updateOne(movie: Partial<IMovie>): Promise<Movie> {
     return this.repository.save(movie);
   }
