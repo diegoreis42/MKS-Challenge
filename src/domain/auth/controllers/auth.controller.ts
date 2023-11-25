@@ -17,7 +17,7 @@ export class AuthController {
   constructor(private readonly authUseCases: IAuthUseCases) {}
 
   @Post('register')
-  registerUser(@Body() userDto: UserRegisterDto) {
+  register(@Body() userDto: UserRegisterDto) {
     return this.authUseCases.register(userDto);
   }
 

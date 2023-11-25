@@ -1,8 +1,8 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { jwtConstants } from 'src/domains/auth/constants';
-import { IAuthService } from 'src/domains/auth/interfaces';
-import { UserDto } from 'src/domains/user/dtos';
+import { jwtConstants } from 'src/domain/auth/constants';
+import { IAuthService } from 'src/domain/auth/interfaces';
+import { UserDto } from 'src/domain/user/dtos';
 
 @Injectable()
 export class AuthService implements IAuthService {
