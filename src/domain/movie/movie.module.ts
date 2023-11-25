@@ -3,8 +3,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from 'src/domain/auth';
 import { MovieController } from 'src/domain/movie/controllers';
 import { Movie } from 'src/domain/movie/entities';
-import { IMovieRepository, IMovieUseCases } from 'src/domain/movie/interfaces';
+import {
+  IMovieRepository,
+  IMovieServices,
+  IMovieUseCases,
+} from 'src/domain/movie/interfaces';
 import { MovieRepository } from 'src/domain/movie/repository';
+import { MovieServices } from 'src/domain/movie/services';
 import { MovieUseCases } from 'src/domain/movie/usecases';
 
 @Module({
@@ -19,6 +24,10 @@ import { MovieUseCases } from 'src/domain/movie/usecases';
     {
       provide: IMovieUseCases,
       useClass: MovieUseCases,
+    },
+    {
+      provide: IMovieServices,
+      useClass: MovieServices,
     },
   ],
 })

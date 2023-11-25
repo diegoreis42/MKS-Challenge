@@ -12,15 +12,22 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from 'src/domain/auth/guards';
 import { MovieCreateDto, MovieId } from 'src/domain/movie/dtos';
-import { IMovieRepository, IMovieUseCases } from 'src/domain/movie/interfaces';
+import { Movie } from 'src/domain/movie/entities';
+import {
+  IMovieRepository,
+  IMovieServices,
+  IMovieUseCases,
+} from 'src/domain/movie/interfaces';
+import { DeleteResult } from 'typeorm';
 
 @UsePipes(new ValidationPipe())
 @Controller('movie')
 export class MovieController {
   constructor(
     private movieUseCases: IMovieUseCases,
-    private movieRepository: IMovieRepository
-    ) {}
+    private movieRepository: IMovieRepository,
+    private movieServices: IMovieServices,
+  ) {}
 
   @Post()
   @UseGuards(AuthGuard)
@@ -30,23 +37,25 @@ export class MovieController {
 
   @Get()
   @UseGuards(AuthGuard)
-  getAll() {
+  getAll(): Promise<Movie[]> {
     return this.movieRepository.findAll();
   }
 
   @Get('/:id')
   @UseGuards(AuthGuard)
-  getOne(@Param() movieId: MovieId) {
-    return this.movieRepository.findOne(movieId.id);
+  getOne(@Param() movieId: MovieId): Promise<Movie> {
+    return this.movieServices.findMovie(movieId.id);
   }
 
   @Patch('/:id')
-  updateOne(@Body() movieDto, @Param() movieId) {
-    // atualiza um filme
+  @UseGuards(AuthGuard)
+  updateOne(@Body() movieDto, @Param() movieId: MovieId) {
+    return this.movieUseCases.updateMovie(movieDto, movieId.id);
   }
 
   @Delete('/:id')
-  deleteOne(@Param() movieId) {
-    // deleta um filme
+  @UseGuards(AuthGuard)
+  deleteOne(@Param() movieId: MovieId): Promise<DeleteResult> {
+    return this.movieUseCases.deleteMovie(movieId.id);
   }
 }

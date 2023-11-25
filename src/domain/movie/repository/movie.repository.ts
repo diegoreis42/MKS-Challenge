@@ -35,8 +35,8 @@ export class MovieRepository implements IMovieRepository {
     return this.repository.find();
   }
 
-  updateOne(movie: Partial<IMovie>): Promise<Movie> {
-    return this.repository.save(movie);
+  updateOne(movie: Partial<IMovie>, movieId: string): Promise<Movie> {
+    return this.repository.save({id: movieId, ...movie});
   }
 
   deleteOne(movieId: string): Promise<DeleteResult> {
