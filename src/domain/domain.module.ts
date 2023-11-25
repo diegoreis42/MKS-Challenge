@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { AuthModule } from 'src/domain/auth/auth.module';
-import { MovieModule } from 'src/domain/movie/movie.module';
+import { AuthModule } from 'src/domain/auth';
+import { MovieModule } from 'src/domain/movie';
 import { UserModule } from 'src/domain/user';
 
 @Module({

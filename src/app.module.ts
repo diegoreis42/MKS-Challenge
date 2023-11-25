@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DomainModule } from 'src/domain';
+import { Movie } from 'src/domain/movie/entities';
 import { User } from 'src/domain/user/entities';
 
 @Module({
@@ -13,7 +14,7 @@ import { User } from 'src/domain/user/entities';
       username: 'postgres',
       password: 'pass123',
       database: 'testdb',
-      entities: [User],
+      entities: [User, Movie],
       synchronize: true,
     }),
     DomainModule,

@@ -23,6 +23,14 @@ export class MovieRepository implements IMovieRepository {
     });
   }
 
+  findOneByName(movieName: string): Promise<Movie> {
+    return this.repository.findOne({
+      where: {
+        name: movieName,
+      },
+    });
+  }
+
   updateOne(movie: Partial<IMovie>): Promise<Movie> {
     return this.repository.save(movie);
   }

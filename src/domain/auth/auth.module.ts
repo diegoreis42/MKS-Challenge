@@ -3,29 +3,30 @@ import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from 'src/domain/auth/constants';
 import { AuthController } from 'src/domain/auth/controllers';
 import { IAuthService, IAuthUseCases } from 'src/domain/auth/interfaces';
-import { AuthService } from 'src/domain/auth/services/auth.service';
-import { AuthUseCases } from 'src/domain/auth/usecases/auth.usecase';
+import { AuthService } from 'src/domain/auth/services';
+import { AuthUseCases } from 'src/domain/auth/usecases';
 import { UserModule } from 'src/domain/user';
 
 @Module({
-    controllers: [AuthController],
-    imports: [
-        UserModule,
-        JwtModule.register({
-            global: true,
-            secret: jwtConstants.secret,
-            signOptions: { expiresIn: jwtConstants.expirationTime},
-        })
-    ],
-    providers: [
-        {
-            provide: IAuthUseCases,
-            useClass: AuthUseCases
-        },
-        {
-            provide: IAuthService,
-            useClass: AuthService
-        }
-    ]
+  controllers: [AuthController],
+  imports: [
+    UserModule,
+    JwtModule.register({
+      global: true,
+      secret: jwtConstants.secret,
+      signOptions: { expiresIn: jwtConstants.expirationTime },
+    }),
+  ],
+  providers: [
+    {
+      provide: IAuthUseCases,
+      useClass: AuthUseCases,
+    },
+    {
+      provide: IAuthService,
+      useClass: AuthService,
+    },
+  ],
+  exports: [IAuthService],
 })
-export class AuthModule{}
+export class AuthModule {}

@@ -2,16 +2,16 @@ import {
   Body,
   Controller,
   HttpCode,
-  Injectable,
   Post,
+  UseGuards,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
+import { AuthGuard } from 'src/domain/auth/guards';
 import { IAuthUseCases } from 'src/domain/auth/interfaces';
 import { UserCredentialsDto, UserRegisterDto } from 'src/domain/user/dtos';
 
 @UsePipes(new ValidationPipe({ whitelist: true }))
-@Injectable()
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authUseCases: IAuthUseCases) {}

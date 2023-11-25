@@ -44,7 +44,6 @@ export class MovieDto {
   description: string;
 
   @IsNotEmpty()
-  @IsString()
   @Type(() => Number)
   @Max(MovieEnum.MAX_YEAR)
   @Min(MovieEnum.MIN_YEAR)
