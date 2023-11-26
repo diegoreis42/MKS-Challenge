@@ -43,6 +43,8 @@ export class MovieUseCases implements IMovieUseCases {
   async deleteMovie(movieId: string): Promise<DeleteResult> {
     const movie = await this.movieServices.findMovie(movieId);
 
+    await this.cacheService.del(movieId);
+
     return this.movieRepository.deleteOne(movie);
   }
 }

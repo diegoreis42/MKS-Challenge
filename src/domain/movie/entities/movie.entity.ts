@@ -19,7 +19,10 @@ export class Movie {
   @Column('varchar', { length: MovieEnum.MAX_ACTORS_NAME_LENGTH })
   actors: string[];
 
-  @Column('varchar', { length: MovieEnum.MAX_DESCRIPTION_LENGTH })
+  @Column('varchar', {
+    length: MovieEnum.MAX_DESCRIPTION_LENGTH,
+    nullable: true,
+  })
   description: string;
 
   @Column()
