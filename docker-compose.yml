@@ -1,12 +1,35 @@
+version: '3.9'
 services:
-  redis:
-    container_name: cache
-    image: redis
+ 
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: api_movies
     ports:
-      - 6379:6379
+      - '8080:8080'
+    depends_on:
+      - postgres
+      - redis
     volumes:
-      - redis:/data
-
-volumes:
+      - ./src:/app/src
+      - ./.env:/app/.env
+  
+  postgres:
+    image: postgres:latest
+    hostname: postgres
+    ports:
+      - '5432:5432'
+    env_file:
+      - .env
+  
+  
   redis:
-    driver: local
+    image: redis
+    hostname: redis
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - '6379:6379'
+    command: redis-server
