@@ -1,4 +1,4 @@
-import { UserReturnDto } from 'src/domain/user/dtos';
+import { UserReturnDto } from '../../user/dtos';
 
 export abstract class IAuthService {
   abstract createAccessToken(user: UserReturnDto);

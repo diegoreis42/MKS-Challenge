@@ -11,15 +11,15 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { AuthGuard } from 'src/domain/auth/guards';
-import { MovieCreateDto, MovieId, MovieUpdateDto } from 'src/domain/movie/dtos';
-import { Movie } from 'src/domain/movie/entities';
+import { AuthGuard } from '../../auth/guards';
+import { MovieCreateDto, MovieId, MovieUpdateDto } from '../dtos';
+import { Movie } from '../entities';
 import {
   IMovie,
   IMovieRepository,
   IMovieServices,
   IMovieUseCases,
-} from 'src/domain/movie/interfaces';
+} from '../interfaces';
 import { DeleteResult } from 'typeorm';
 
 @UsePipes(new ValidationPipe())

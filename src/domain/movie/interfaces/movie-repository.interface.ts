@@ -1,5 +1,5 @@
-import { Movie } from 'src/domain/movie/entities';
-import { IMovie } from 'src/domain/movie/interfaces/movie.interface';
+import { Movie } from '../entities';
+import { IMovie } from './movie.interface';
 import { DeleteResult } from 'typeorm';
 
 export abstract class IMovieRepository {

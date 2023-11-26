@@ -1,5 +1,5 @@
-import { MovieCreateDto, MovieUpdateDto } from 'src/domain/movie/dtos';
-import { IMovie } from 'src/domain/movie/interfaces/movie.interface';
+import { MovieCreateDto, MovieUpdateDto } from '../dtos';
+import { IMovie } from './movie.interface';
 import { DeleteResult } from 'typeorm';
 
 export abstract class IMovieUseCases {

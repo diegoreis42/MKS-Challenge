@@ -1,9 +1,9 @@
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { Cache } from 'cache-manager';
-import { Movie } from 'src/domain/movie/entities';
-import { MovieErrorsEnum } from 'src/domain/movie/enums';
-import { IMovieRepository, IMovieServices } from 'src/domain/movie/interfaces';
+import { Movie } from '../entities';
+import { MovieErrorsEnum } from '../enums';
+import { IMovieRepository, IMovieServices } from '../interfaces';
 
 @Injectable()
 export class MovieServices implements IMovieServices {

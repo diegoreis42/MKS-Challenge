@@ -10,7 +10,7 @@ import {
   MaxLength,
   Min,
 } from 'class-validator';
-import { MovieEnum } from 'src/domain/movie/enums';
+import { MovieEnum } from '../enums';
 
 export class MovieDto {
   @ApiProperty({

@@ -1,11 +1,11 @@
 import { CacheModule } from '@nestjs/cache-manager';
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DomainModule } from 'src/domain';
-import { Movie } from 'src/domain/movie/entities';
-import { User } from 'src/domain/user/entities';
+import { DomainModule } from './domain';
+import { User } from './domain/user/entities';
 import * as redisStore from 'cache-manager-redis-store';
+import { Movie } from './domain/movie/entities';
 
 @Module({
   imports: [

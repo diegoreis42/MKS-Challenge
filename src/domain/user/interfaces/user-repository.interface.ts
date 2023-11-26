@@ -1,5 +1,5 @@
-import { User } from 'src/domain/user/entities';
-import { IUser } from 'src/domain/user/interfaces/user.interface';
+import { User } from '../entities';
+import { IUser } from '../interfaces/user.interface';
 
 export abstract class IUserRepository {
   abstract createOne(user: IUser): Promise<User>;

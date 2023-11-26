@@ -1,4 +1,4 @@
-import { UserEnum } from 'src/domain/user/enums';
+import { UserEnum } from '../enums';
 import { Column, Entity, Index, PrimaryColumn, Unique } from 'typeorm';
 
 @Entity()

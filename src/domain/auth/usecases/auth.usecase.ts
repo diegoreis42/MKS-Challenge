@@ -1,9 +1,9 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { IUserRepository, IUserServices } from 'src/domain/user/interfaces';
+import { IUserRepository, IUserServices } from '../../user/interfaces';
 import * as bcrypt from 'bcrypt';
-import { AuthEnum, AuthErrorsEnum } from 'src/domain/auth/enums';
-import { UserCredentialsDto, UserRegisterDto } from 'src/domain/user/dtos';
-import { IAuthService, IAuthUseCases } from 'src/domain/auth/interfaces';
+import { AuthEnum, AuthErrorsEnum } from '../enums';
+import { UserCredentialsDto, UserRegisterDto } from '../../user/dtos';
+import { IAuthService, IAuthUseCases } from '../interfaces';
 
 @Injectable()
 export class AuthUseCases implements IAuthUseCases {

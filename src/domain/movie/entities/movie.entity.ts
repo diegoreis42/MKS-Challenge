@@ -1,4 +1,4 @@
-import { MovieEnum } from 'src/domain/movie/enums';
+import { MovieEnum } from '../enums';
 import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm';
 
 @Entity()

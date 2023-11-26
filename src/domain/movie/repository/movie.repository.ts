@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Movie } from 'src/domain/movie/entities';
-import { IMovie, IMovieRepository } from 'src/domain/movie/interfaces';
+import { Movie } from '../entities';
+import { IMovie, IMovieRepository } from '../interfaces';
 import { DeleteResult, Repository } from 'typeorm';
 
 @Injectable()
@@ -36,7 +36,7 @@ export class MovieRepository implements IMovieRepository {
   }
 
   updateOne(movie: Partial<IMovie>, movieId: string): Promise<Movie> {
-    return this.repository.save({id: movieId, ...movie});
+    return this.repository.save({ id: movieId, ...movie });
   }
 
   deleteOne(movieId: string): Promise<DeleteResult> {

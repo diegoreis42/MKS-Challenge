@@ -1,16 +1,12 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthModule } from 'src/domain/auth';
-import { MovieController } from 'src/domain/movie/controllers';
-import { Movie } from 'src/domain/movie/entities';
-import {
-  IMovieRepository,
-  IMovieServices,
-  IMovieUseCases,
-} from 'src/domain/movie/interfaces';
-import { MovieRepository } from 'src/domain/movie/repository';
-import { MovieServices } from 'src/domain/movie/services';
-import { MovieUseCases } from 'src/domain/movie/usecases';
+import { AuthModule } from '../auth';
+import { MovieController } from './controllers';
+import { Movie } from './entities';
+import { IMovieRepository, IMovieServices, IMovieUseCases } from './interfaces';
+import { MovieRepository } from './repository';
+import { MovieServices } from './services';
+import { MovieUseCases } from './usecases';
 
 @Module({
   controllers: [MovieController],

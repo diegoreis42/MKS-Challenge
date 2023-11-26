@@ -6,20 +6,20 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
-import { UserEnum } from 'src/domain/user/enums';
+import { UserEnum } from '../enums';
 
 export class UserDto {
   @ApiProperty({
-    example: "user@gmail.com",
-    required: true
+    example: 'user@gmail.com',
+    required: true,
   })
   @IsEmail()
   @MaxLength(UserEnum.MAX_EMAIL_LENGTH)
   @IsNotEmpty()
   email: string;
   @ApiProperty({
-    example: "Jonh Doe",
-    required: true
+    example: 'Jonh Doe',
+    required: true,
   })
   @IsString()
   @MaxLength(UserEnum.MAX_NAME_LENGTH)
@@ -27,9 +27,9 @@ export class UserDto {
   name: string;
 
   @ApiProperty({
-    example: "secure123",
+    example: 'secure123',
     required: true,
-    minLength: 7
+    minLength: 7,
   })
   @IsString()
   @MinLength(7)

@@ -1,14 +1,14 @@
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { Cache } from 'cache-manager';
-import { MovieCreateDto, MovieUpdateDto } from 'src/domain/movie/dtos';
-import { MovieErrorsEnum } from 'src/domain/movie/enums';
+import { MovieCreateDto, MovieUpdateDto } from '../dtos';
+import { MovieErrorsEnum } from '../enums';
 import {
   IMovie,
   IMovieRepository,
   IMovieServices,
   IMovieUseCases,
-} from 'src/domain/movie/interfaces';
+} from '../interfaces';
 import { DeleteResult } from 'typeorm';
 
 @Injectable()

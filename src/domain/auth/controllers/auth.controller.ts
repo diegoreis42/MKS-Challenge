@@ -7,8 +7,8 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { IAuthUseCases } from 'src/domain/auth/interfaces';
-import { UserCredentialsDto, UserRegisterDto } from 'src/domain/user/dtos';
+import { IAuthUseCases } from '../interfaces';
+import { UserCredentialsDto, UserRegisterDto } from '../../user/dtos';
 
 @UsePipes(new ValidationPipe({ whitelist: true }))
 @ApiTags('Auth')
@@ -33,8 +33,7 @@ export class AuthController {
   })
   @ApiResponse({
     status: 403,
-    description:
-      'Forbidden, verify the password.',
+    description: 'Forbidden, verify the password.',
   })
   login(@Body() body: UserCredentialsDto) {
     return this.authUseCases.login(body);
