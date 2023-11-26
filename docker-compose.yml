@@ -27,6 +27,7 @@ services:
   redis:
     image: redis
     hostname: redis
+
     restart: always
     env_file:
       - .env
