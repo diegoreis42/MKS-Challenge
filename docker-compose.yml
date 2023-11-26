@@ -1,13 +1,6 @@
 version: '3.9'
 services:
-  db:
-    container_name: postgres
-    image: postgres:latest
-    ports:
-      - '5432:5432'
-    env_file:
-      - .env
-  
+ 
   api:
     build:
       context: .
@@ -16,14 +9,25 @@ services:
     ports:
       - '8080:8080'
     depends_on:
-      - db
+      - postgres
+      - redis
     volumes:
       - ./src:/app/src
-      - ./.env:/app/.en
+      - ./.env:/app/.env
   
-  cache:
-    container_name: redis
-    image: redis:7.2-rc1-alpine
+  postgres:
+    image: postgres:latest
+    hostname: postgres
+    ports:
+      - '5432:5432'
+    env_file:
+      - .env
+  
+  
+  redis:
+    image: redis
+    hostname: redis
+
     restart: always
     env_file:
       - .env
