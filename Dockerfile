@@ -1,23 +1,16 @@
-###################
-# BUILD FOR LOCAL DEVELOPMENT
-###################
+FROM node:18-alpine
 
-# Update to node:18 instead of node:18-alpine
-FROM node:18 As development
+WORKDIR /app
 
-# Required for Prisma Client to work in container
-RUN apt-get update && apt-get install -y openssl
-
-WORKDIR /usr/src/app
-
-COPY --chown=node:node package*.json ./
+COPY package*.json ./
 
 RUN npm ci
 
-COPY --chown=node:node . .
+COPY . .
 
-RUN npm run prisma:generate
-
-USER node
+ENV NODE_ENV production
 
 
+RUN npm run build
+
+CMD ["npm", "run", "start:prod"]
