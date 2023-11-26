@@ -4,6 +4,7 @@ import {
   ArrayNotEmpty,
   IsArray,
   IsNotEmpty,
+  IsOptional,
   IsString,
   IsUUID,
   Max,
@@ -66,7 +67,8 @@ export class MovieDto {
   })
   @IsString()
   @MaxLength(MovieEnum.MAX_DESCRIPTION_LENGTH)
-  description: string;
+  @IsOptional()
+  description?: string;
 
   @ApiProperty({
     example: 2001,
