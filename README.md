@@ -1,16 +1,22 @@
 Desafio Mks
 ===========================
 
-## Instruções
-
 Olá, esta é a minha entrega oficial para o desafio da MKS
 espero que goste :)
 
-1. Depois de clonar o projeto, basta executar:
+## Instruções
+
+1. Depois de clonar o projeto, preencha os valores vazios
+no arquivo .env.example, como desejar. Depois execute:
+```
+cp .env.example .env
+```
+
+2. Para rodar o projeto, basta executar:
 ```
 docker compose up --build
 ```
-2. Para acessar a documentação acesse: http://localhost:8080/docs
+3. Para acessar a documentação acesse: http://localhost:8080/docs
 
 ## Esclarecimentos
 
