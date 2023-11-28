@@ -16,7 +16,7 @@ cp .env.example .env
 ```
 docker compose up --build
 ```
-3. Para acessar a documentação acesse: http://localhost:8080/docs
+3. Para acessar a documentação acesse: http://localhost:3001/docs
 
 ## Esclarecimentos
 
